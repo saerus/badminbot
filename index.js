@@ -67,6 +67,21 @@ bot.onText(/\/subscribe/, (msg, match) => {
   let resp = subscribe(msg.from.id);
   bot.sendMessage(chatId, resp);
 });
+//
+bot.onText(/\/resetdates/, (msg, match) => {
+  let chatId = msg.chat.id;
+  let savedDates = {};
+  saveSavedDates();
+  let resp = "reset dates";
+  bot.sendMessage(chatId, resp);
+});
+bot.onText(/\/resetusers/, (msg, match) => {
+  let chatId = msg.chat.id;
+  let validUsers = [];
+  saveValidUsers
+  let resp = "reset users";
+  bot.sendMessage(chatId, resp);
+});
 // ------------------------------------------------------------------- /unsubsribe
 bot.onText(/\/unsubscribe/, (msg, match) => {
   let chatId = msg.chat.id;
