@@ -1,0 +1,3 @@
+{
+  "ignore": ["savedDates.json", "validUsers.json"]
+}
