@@ -70,14 +70,14 @@ bot.onText(/\/subscribe/, (msg, match) => {
 //
 bot.onText(/\/resetdates/, (msg, match) => {
   let chatId = msg.chat.id;
-  let savedDates = {};
+  savedDates = {};
   saveSavedDates();
   let resp = "reset dates";
   bot.sendMessage(chatId, resp);
 });
 bot.onText(/\/resetusers/, (msg, match) => {
   let chatId = msg.chat.id;
-  let validUsers = [];
+  validUsers = [];
   saveValidUsers
   let resp = "reset users";
   bot.sendMessage(chatId, resp);
