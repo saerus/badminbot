@@ -35,6 +35,11 @@ function validateUser(id) {
 bot.onText(/\/play/, (msg, match) => {
   if(!validateUser(msg.from.id)) return;
   let chatId = msg.chat.id;
+  if(msg.chat.type === "group") {
+    console.log(bot);
+    bot.sendMessage(chatId, "Faut m'écrire en privé, alors: "+"@Badmingbot");
+    return;
+  };
   let datesButtons = proposeDays(msg.from);
   let options = {
     reply_markup : JSON.stringify({
@@ -47,8 +52,12 @@ bot.onText(/\/play/, (msg, match) => {
 // ------------------------------------------------------------------- /leave
 bot.onText(/\/leave/, (msg, match) => {
   if(!validateUser(msg.from.id)) return;
-  // console.log("leave");
   let chatId = msg.chat.id;
+  if(msg.chat.type === "group") {
+    console.log(bot);
+    bot.sendMessage(chatId, "Faut m'écrire en privé, alors: "+"@Badmingbot");
+    return;
+  };
   let datesButtons = getSubDays(msg.from);
   let options = {
     reply_markup : JSON.stringify({
@@ -64,12 +73,22 @@ bot.onText(/\/leave/, (msg, match) => {
 // ------------------------------------------------------------------- /subscribe
 bot.onText(/\/subscribe/, (msg, match) => {
   let chatId = msg.chat.id;
+  if(msg.chat.type === "group") {
+    console.log(bot);
+    bot.sendMessage(chatId, "Faut m'écrire en privé, alors: "+"@Badmingbot");
+    return;
+  };
   let resp = subscribe(msg.from.id);
   bot.sendMessage(chatId, resp);
 });
 //
 bot.onText(/\/resetdates/, (msg, match) => {
   let chatId = msg.chat.id;
+  if(msg.chat.type === "group") {
+    console.log(bot);
+    bot.sendMessage(chatId, "Faut m'écrire en privé, alors: "+"@Badmingbot");
+    return;
+  };
   savedDates = {};
   saveSavedDates();
   let resp = "reset dates";
@@ -77,6 +96,11 @@ bot.onText(/\/resetdates/, (msg, match) => {
 });
 bot.onText(/\/resetusers/, (msg, match) => {
   let chatId = msg.chat.id;
+  if(msg.chat.type === "group") {
+    console.log(bot);
+    bot.sendMessage(chatId, "Faut m'écrire en privé, alors: "+"@Badmingbot");
+    return;
+  };
   validUsers = [];
   saveValidUsers
   let resp = "reset users";
@@ -85,6 +109,11 @@ bot.onText(/\/resetusers/, (msg, match) => {
 // ------------------------------------------------------------------- /unsubsribe
 bot.onText(/\/unsubscribe/, (msg, match) => {
   let chatId = msg.chat.id;
+  if(msg.chat.type === "group") {
+    console.log(bot);
+    bot.sendMessage(chatId, "Faut m'écrire en privé, alors: "+"@Badmingbot");
+    return;
+  };
   let resp = unSubscribe(msg.from.id);
   bot.sendMessage(chatId, resp);
 });
