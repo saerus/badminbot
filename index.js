@@ -216,7 +216,7 @@ function getParticipants(date) {
   let list = [];
   if(savedDates[date] != null) {
     savedDates[date].people.forEach((p)=>{
-      list.push(p.first_name);
+      list.push(bad+" "+p.first_name);
     });
   }
   return list.join(", ")+" ("+list.length+")";
