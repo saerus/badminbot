@@ -122,6 +122,7 @@ bot.onText(/\/who/, (msg, match) => {
   if(!validateUser(msg.from.id)) return;
   let chatId = msg.chat.id;
   let list = [];
+  cleanSavedDates();
   Object.entries(savedDates).forEach(([k, v]) => {
     if(v.people.length>0) {
       let date = new Date(k*1);
@@ -206,7 +207,20 @@ function unSubscribe(id) {
 }
 //
 function cleanSavedDates() {
-
+  let date = new Date();
+  date.setHours(0);
+  date.setMinutes(0);
+  date.setSeconds(0);
+  date.setMilliseconds(0);
+  date = addDays(date, -1);
+  //
+  Object.entries(savedDates).forEach(([k, v]) => {
+    let savedDate = new Date(k*1);
+    if(savedDate<date) {
+      delete savedDates[k];
+    }
+  });
+  saveSavedDates();
 }
 //
 function saveSavedDates() {
